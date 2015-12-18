@@ -9,7 +9,9 @@ process data come from quantitative real-time PCR
 (1) gene used for internal control, for example, 'Cyclophinlin B'
 (2) mapping the individual samples to the corresponding groups
 
-currently, the program is based on two treatments with interactions, here they are called 'conditions' and 'treatments'. So, each sample belong to one group within the condition groups, and also belong to one group within the treatment groups.
+currently, the program is based on two treatments with interactions, here they are called 'conditions' and 'treatments'.
+So, each sample belong to one group within the condition groups, and also belong to one group within the treatment groups.
+
 results are exported to several .CSV files and three .PNG figures
 raw data file - this is the file exported from the machine, may need a little work before puting into the program.
 relative expression levels for each sample with standard deviation from the triplicates
