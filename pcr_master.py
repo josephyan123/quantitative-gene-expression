@@ -2,13 +2,14 @@
 
 """
 tested with Python 2.7
+dependencies: numpy, pandas, matplotlib, scipy, statsmodules
 sample group information in template/mapping1
 """
 import os
-path1 = '/media/joe/USB20FD'
+path1 = '/home/joe/p/template'
 os.chdir(path1)
 import pandas as pd
-from template import *
+import mapping1, pcr1, pcr2, pwttest1, anova1, barplot1, boxplot1, barplot2
 
 class RtPcr():
     """
@@ -19,7 +20,7 @@ class RtPcr():
         self.cali = cali
         self.mapping = mapping
         
-    def main(self, file1='template/pcrraw.csv', path=''):
+    def main(self, file1='pcrraw.csv', path=''):
         
         p1 = pcr1.Pcr1(self.endo, self.cali, self.mapping)
         p2 = pcr2.Pcr2(self.cali)
@@ -53,13 +54,17 @@ class RtPcr():
 RtPcr().main()
         
 if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("endo", help="endogeneous control")
-    parser.add_argument("cali", help="group name of calibrator samples")
-    parser.add_argument("file1", help="path and file name of raw data")
-    args = parser.parse_args()
-    RtPcr(args.endo, args.cali).main(args.file1)
-
-
+    try:
+        import argparse
+        parser = argparse.ArgumentParser()
+        parser.add_argument("endo", help="endogeneous control")
+        parser.add_argument("cali", help="group name of calibrator samples")
+        parser.add_argument("file1", help="path and file name of raw data")
+        args = parser.parse_args()
+        RtPcr(endo=args.endo, cali=args.cali).main(file1=args.file1)
+    except IOError:
+        import sys
+        RtPcr(endo=sys.argv[1], cali=sys.argv[2]).main(file1=sys.argv[3])
+    except:
+        RtPcr(endo='det_ctrl', cali='treat1 condi1').main(file1='pcrraw.csv')
+    
