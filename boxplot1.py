@@ -35,7 +35,7 @@ class Boxplot1():
                 grp_grp.index = np.arange(len(grp_grp))
                 yerr2 = np.array([grp_grp.Poserr, grp_grp.Negerr])
                 grp_grp.plot(kind='scatter', x='x', y='Value', yerr=yerr2, ax=axes[ind3])
-                bp = grp_grp[['Value']].boxplot(sym='', widths=1.5, positions=[ind4*2.0], whis=[5,95], ax=axes[ind3])
+                bp = grp_grp[['Value']].boxplot(sym='', widths=1.5, positions=[ind4*2.0], whis=[5,95], ax=axes[ind3], return_type='dict')
                 plt.setp(bp['boxes'], linewidth=2)
                 plt.setp(bp['whiskers'], linewidth=2)
                 plt.setp(bp['caps'], color='blue', linewidth=3)
